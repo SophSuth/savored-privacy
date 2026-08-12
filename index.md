@@ -1,12 +1,12 @@
 # Privacy Policy for Savored
 
-**Last updated:** 2026-08-11
+**Last updated:** 2026-08-12
 
 Savored is a personal iOS app for saving and organizing recipes. This policy explains what data the app handles, where it goes, and your rights.
 
 ## What we collect
 
-Savored only handles data **you** add to it: URLs you paste, posts you share into the app from Instagram, TikTok or YouTube, photos you pick, recipe text you type or dictate, and recipes you save or edit.
+Savored only handles data **you** add to it: URLs you paste, posts you share into the app from Instagram, TikTok or YouTube, photos you pick, recipe text you write yourself, and recipes you save or edit.
 
 We do **not** collect:
 
@@ -18,7 +18,7 @@ We do **not** collect:
 
 ## How we use it
 
-When you add a recipe, Savored sends the relevant content to **Anthropic's Claude API**, which extracts a clean recipe (title, ingredients, steps, and so on) from it. Depending on how you added it, that content may include the URL, a photo you picked, a post's caption or description, recipe text you typed or dictated, and — for videos we can read — extracted frames and an audio transcript. This request goes **directly from your device** to Anthropic.
+When you add a recipe, Savored sends the relevant content to **Anthropic's Claude API**, which extracts a clean recipe (title, ingredients, steps, and so on) from it. Depending on how you added it, that content may include the URL, a photo you picked, a post's caption or description, and — for videos we can read — extracted frames and an audio transcript. This request goes **directly from your device** to Anthropic. If you write a recipe yourself using "Write it myself," none of it is sent anywhere — it's typed straight into your local library.
 
 To read a post you've shared, Savored also uses **a small backend service we host on Railway** (`cookbook-ig-fetcher`). Social platforms don't expose captions or video to the iOS share sheet, so the app sends the post's URL to that service, which fetches what it can and sends it back. The same service looks up a page's main image for web recipe URLs, so your saved recipe has a cover.
 
@@ -30,10 +30,6 @@ To do that work, the backend may contact:
 - **Instagram and TikTok** directly, to read a post's caption, cover image, and — for Instagram — its video.
 - **Apify**, a third-party service, as a fallback for Instagram posts our own fetching can't read.
 
-### Dictation
-
-Savored's "From text" box works with **your iPhone keyboard's own dictation button** — Apple's feature, not ours. Savored has no microphone permission and never receives audio. Whatever the keyboard types out is treated exactly like text you typed by hand. Apple's own privacy policy governs dictation itself.
-
 That's it. The extracted recipe is then saved locally on your device.
 
 ## Where your data lives
@@ -41,7 +37,7 @@ That's it. The extracted recipe is then saved locally on your device.
 | Data | Where it's stored |
 |---|---|
 | Your saved recipes (title, ingredients, steps, tags, photos, notes) | Locally on your device, in iOS's SwiftData store. Nothing leaves your device once saved. |
-| URLs, photos, captions, typed or dictated text, video content sent for extraction | Transmitted in real time to Anthropic, and to Savored's Railway backend and the services it calls on your behalf. None of them stores your recipes; the backend is a stateless proxy that keeps nothing between requests. Each provider has its own privacy policy governing requests in transit. |
+| URLs, photos, captions, video content sent for extraction | Transmitted in real time to Anthropic, and to Savored's Railway backend and the services it calls on your behalf. None of them stores your recipes; the backend is a stateless proxy that keeps nothing between requests. Each provider has its own privacy policy governing requests in transit. |
 | Per-device extraction counter (to enforce a daily rate limit) | UserDefaults on your device only. Never transmitted. |
 
 ## Third parties
