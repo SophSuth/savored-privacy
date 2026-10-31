@@ -1,63 +1,80 @@
 # Privacy Policy for Savored
 
-**Last updated:** 2026-08-12
+**Last updated:** 2026-10-30
 
-Savored is a personal iOS app for saving and organizing recipes. This policy explains what data the app handles, where it goes, and your rights.
+Savored is an iOS app for saving and organizing recipes. This policy explains what data the app handles, where it goes, and your rights.
 
 ## What we collect
 
-Savored only handles data **you** add to it: URLs you paste, posts you share into the app from Instagram, TikTok or YouTube, photos you pick, recipe text you write yourself, and recipes you save or edit.
+Savored only handles data **you** add to it: links you paste or share into the app (Instagram, TikTok, YouTube or a recipe website), photos you pick, recipe text you type, and the recipes you save or edit.
 
 We do **not** collect:
 
 - Accounts or sign-in info — Savored has no login.
+- Your name, email address, contacts or location.
 - Analytics, telemetry, or crash reports.
-- Advertising identifiers.
-- Tracking data of any kind.
-- Your contacts, location, or device information.
+- Advertising identifiers or tracking data of any kind.
 
-## How we use it
+Savored never uses your microphone. If you dictate text, that's Apple's keyboard feature; the app only receives the typed result.
 
-When you add a recipe, Savored sends the relevant content to **Anthropic's Claude API**, which extracts a clean recipe (title, ingredients, steps, and so on) from it. Depending on how you added it, that content may include the URL, a photo you picked, a post's caption or description, and — for videos we can read — extracted frames and an audio transcript. This request goes **directly from your device** to Anthropic. If you write a recipe yourself using "Write it myself," none of it is sent anywhere — it's typed straight into your local library.
+## How a recipe is made
 
-To read a post you've shared, Savored also uses **a small backend service we host on Railway** (`cookbook-ig-fetcher`). Social platforms don't expose captions or video to the iOS share sheet, so the app sends the post's URL to that service, which fetches what it can and sends it back. The same service looks up a page's main image for web recipe URLs, so your saved recipe has a cover.
+When you add a recipe, the app sends what you gave it to **our server** (a small service we run on Railway). The server turns it into a clean recipe — title, ingredients, steps and tags — using **Anthropic's Claude**, and sends the recipe back to your phone, where it's saved. If you write a recipe yourself with "Write it myself," nothing is sent anywhere.
 
-**These requests are made by our server, not by your phone.** Instagram, TikTok, YouTube, Google and Apify (below) therefore see a request from our backend — not your IP address, and nothing identifying your device.
+Depending on what you added, the server may:
 
-To do that work, the backend may contact:
+- **For a photo:** send the photo to Claude.
+- **For typed text:** send the text to Claude.
+- **For a recipe website:** fetch the page and send its recipe text to Claude.
+- **For an Instagram or TikTok post:** read the post's caption first. If the caption doesn't contain the whole recipe, the server downloads the video, transcribes its audio, reads any text shown on screen, and takes a few still frames, then sends those to Claude. The video, audio and frames are **deleted as soon as the recipe is made** and are never kept.
+- **For a YouTube video:** read the video's description. Savored never downloads YouTube videos.
+- **For a link in a post's caption** that points to a recipe page: fetch that one page (never pages linked from it) and send its recipe text to Claude.
 
-- **YouTube's official Data API**, operated by Google, to read a video's description and thumbnail. Savored does not download YouTube videos.
-- **Instagram and TikTok** directly, to read a post's caption, cover image, and — for Instagram — its video.
-- **Apify**, a third-party service, as a fallback for Instagram posts our own fetching can't read.
+**These requests are made by our server, not by your phone.** Instagram, TikTok, YouTube, recipe websites and the services listed below see a request from our server — not your IP address, and nothing identifying you or your device.
 
-That's it. The extracted recipe is then saved locally on your device.
+**One exception — the cover picture.** To give a saved recipe a cover picture, the app downloads the post's or page's image **directly from your phone**. That site sees an ordinary image request from your device, as it would in a web browser.
+
+## What our server keeps
+
+The server keeps no recipes, photos, captions, transcripts or text you send. It keeps only what it needs to work and to stop misuse:
+
+| What | Why | How long |
+|---|---|---|
+| An anonymous identifier for your installation of the app, issued through Apple's App Attest (no name, account or contact details) | To confirm requests come from the genuine Savored app | While you use the app; deleted after 12 months without use |
+| How many recipes each installation saved each day, and how many recipe requests it made (including ones that failed) | To apply the daily limits: 20 saves and 60 recipe requests per device, with an overall cap across all users, so the service can't be misused | 30 days |
+| Technical server logs (for example, which post was processed and how long it took) | To keep the service running and fix problems | Kept by Railway for a limited period under its own policy |
+
+Reinstalling the app creates a new anonymous identifier.
 
 ## Where your data lives
 
 | Data | Where it's stored |
 |---|---|
-| Your saved recipes (title, ingredients, steps, tags, photos, notes) | Locally on your device, in iOS's SwiftData store. Nothing leaves your device once saved. |
-| URLs, photos, captions, video content sent for extraction | Transmitted in real time to Anthropic, and to Savored's Railway backend and the services it calls on your behalf. None of them stores your recipes; the backend is a stateless proxy that keeps nothing between requests. Each provider has its own privacy policy governing requests in transit. |
-| Per-device extraction counter (to enforce a daily rate limit) | UserDefaults on your device only. Never transmitted. |
+| Your saved recipes (title, ingredients, steps, tags, photos, notes) | Only on your device, in the app's local storage. Nothing leaves your device once saved. |
+| What you send to make a recipe (links, photos, text, and video content read from posts) | Passed through our server to the services below while the recipe is being made, then discarded. |
+| The anonymous identifier and daily counts | On our server, as described above. |
 
 ## Third parties
 
-- **Anthropic** is the company behind Claude, the model that extracts recipes from your inputs. Requests go directly from your device. API requests are subject to Anthropic's data handling policy, which states that API customer data is not used to train their models by default. See <https://www.anthropic.com/legal/privacy>.
-- **Railway** hosts the small backend service Savored uses to read shared posts and look up page images. The backend is stateless — it doesn't persist your data. See <https://railway.com/legal/privacy>.
-- **Google** operates the YouTube Data API, which our backend uses to read a YouTube video's description and thumbnail. Google receives the video's ID from our server. See <https://policies.google.com/privacy>.
-- **Apify** is a third-party service our backend falls back to when it can't read an Instagram post directly. Apify receives the post's URL from our server. See <https://apify.com/privacy-policy>.
-- **Instagram, TikTok and YouTube** receive a request for the post you chose to save, made by our server.
+- **Anthropic** makes Claude, which turns your input into a recipe. It receives the content described above from our server. Anthropic's terms say API data is not used to train its models by default. See <https://www.anthropic.com/legal/privacy>.
+- **Railway** hosts our server and stores the small amount of data described above. See <https://railway.com/legal/privacy>.
+- **Apple** provides App Attest, which lets our server confirm requests come from the genuine Savored app. Your phone talks to Apple for this as part of iOS. See <https://www.apple.com/legal/privacy/>.
+- **Decodo** provides the network connection our server uses to look up an Instagram post, so it can be read properly. Decodo sees the address of the Instagram post being looked up, sent from our server. See Decodo's privacy policy at <https://decodo.com>.
+- **Apify** is a service our server falls back to when it can't read an Instagram post itself. Apify receives the post's address from our server. See <https://apify.com/privacy-policy>.
+- **Google** runs the YouTube Data API, which our server uses to read a YouTube video's description. Google receives the video's ID from our server. See <https://policies.google.com/privacy>.
+- **Instagram, TikTok, YouTube and recipe websites** receive a request for the post or page you chose to save, made by our server.
 
 ## Retention
 
-- **On-device data:** kept as long as you have Savored installed. Delete individual recipes inside the app; uninstall the app to remove your entire local library.
-- **Third-party services:** subject to those providers' own retention policies.
+- **On your device:** kept as long as Savored is installed. Delete individual recipes in the app, or uninstall the app to remove your whole library.
+- **On our server:** as listed under "What our server keeps".
+- **Third-party services:** under those providers' own policies.
 
 ## Your rights
 
 - Delete any recipe in the app — it's gone immediately.
-- Uninstall Savored — your entire local library is gone with it.
-- There's no server-side account or stored recipe data for us to delete on request, because we don't keep any.
+- Uninstall Savored — your whole local library goes with it.
+- We hold no account, name or recipes for you on our server. The anonymous identifier and daily counts can't be linked to you, so we can't look up one person's data — but uninstalling the app means its identifier is never used again, and it's deleted after 12 months.
 
 ## Children
 
