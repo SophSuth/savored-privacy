@@ -26,7 +26,7 @@ Depending on what you added, the server may:
 - **For a photo:** send the photo to Claude.
 - **For typed text:** send the text to Claude.
 - **For a recipe website:** fetch the page and send its recipe text to Claude.
-- **For an Instagram, TikTok or YouTube video:** read the post's caption (or the video's description) first. If that doesn't contain the whole recipe, the server downloads the video, transcribes its audio, reads any text shown on screen, and takes a few still frames, then sends those to Claude. The video, audio and frames are **deleted as soon as the recipe is made** and are never kept. YouTube videos longer than 3 minutes are not downloaded; they are read from the description (and any recipe page it links to) only.
+- **For an Instagram, TikTok or YouTube video:** read the post's caption (or the video's description) first. If that doesn't contain the whole recipe, the server downloads the video, transcribes its audio, reads any text shown on screen, and takes a few still frames, then sends those to Claude. The video, audio and frames are **deleted as soon as the recipe is made** and are never kept. Videos longer than 3 minutes are not read: if one had to be downloaded to find its length, it is deleted straight away. The recipe then comes from the caption or description (and any recipe page it links to) only.
 - **For a link in a post's caption** that points to a recipe page: fetch that one page (never pages linked from it) and send its recipe text to Claude.
 
 **These requests are made by our server, not by your phone.** Instagram, TikTok, YouTube, recipe websites and the services listed below see a request from our server — not your IP address, and nothing identifying you or your device.
@@ -41,6 +41,7 @@ The server keeps no recipes, photos, captions, transcripts or text you send. It 
 |---|---|---|
 | An anonymous identifier for your installation of the app, issued through Apple's App Attest (no name, account or contact details) | To confirm requests come from the genuine Savored app | While you use the app; deleted after 12 months without use |
 | How many recipes each installation saved each day, and how many recipe requests it made (including ones that failed) | To apply the daily limits: 20 saves and 60 recipe requests per device, with an overall cap across all users, so the service can't be misused | 30 days |
+| A daily total, per platform, of videos read and videos over the 3-minute limit. It holds no link, identifier or device | To judge whether the limit is right | 12 months |
 | Technical server logs (for example, which post was processed and how long it took) | To keep the service running and fix problems | Kept by Railway for a limited period under its own policy |
 
 Reinstalling the app creates a new anonymous identifier.
