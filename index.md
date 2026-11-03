@@ -1,6 +1,6 @@
 # Privacy Policy for Savored
 
-**Last updated:** 2026-10-30
+**Last updated:** 2026-11-03
 
 Savored is an iOS app for saving and organizing recipes. This policy explains what data the app handles, where it goes, and your rights.
 
@@ -26,8 +26,7 @@ Depending on what you added, the server may:
 - **For a photo:** send the photo to Claude.
 - **For typed text:** send the text to Claude.
 - **For a recipe website:** fetch the page and send its recipe text to Claude.
-- **For an Instagram or TikTok post:** read the post's caption first. If the caption doesn't contain the whole recipe, the server downloads the video, transcribes its audio, reads any text shown on screen, and takes a few still frames, then sends those to Claude. The video, audio and frames are **deleted as soon as the recipe is made** and are never kept.
-- **For a YouTube video:** read the video's description. Savored never downloads YouTube videos.
+- **For an Instagram, TikTok or YouTube video:** read the post's caption (or the video's description) first. If that doesn't contain the whole recipe, the server downloads the video, transcribes its audio, reads any text shown on screen, and takes a few still frames, then sends those to Claude. The video, audio and frames are **deleted as soon as the recipe is made** and are never kept. YouTube videos longer than 3 minutes are not downloaded; they are read from the description (and any recipe page it links to) only.
 - **For a link in a post's caption** that points to a recipe page: fetch that one page (never pages linked from it) and send its recipe text to Claude.
 
 **These requests are made by our server, not by your phone.** Instagram, TikTok, YouTube, recipe websites and the services listed below see a request from our server — not your IP address, and nothing identifying you or your device.
@@ -59,7 +58,7 @@ Reinstalling the app creates a new anonymous identifier.
 - **Anthropic** makes Claude, which turns your input into a recipe. It receives the content described above from our server. Anthropic's terms say API data is not used to train its models by default. See <https://www.anthropic.com/legal/privacy>.
 - **Railway** hosts our server and stores the small amount of data described above. See <https://railway.com/legal/privacy>.
 - **Apple** provides App Attest, which lets our server confirm requests come from the genuine Savored app. Your phone talks to Apple for this as part of iOS. See <https://www.apple.com/legal/privacy/>.
-- **Decodo** provides the network connection our server uses to look up an Instagram post, so it can be read properly. Decodo sees the address of the Instagram post being looked up, sent from our server. See Decodo's privacy policy at <https://decodo.com>.
+- **Decodo** provides the network connection our server uses to look up an Instagram post or YouTube video and to download YouTube video, so it can be read properly. Decodo sees the address of the post or video being looked up, sent from our server. See Decodo's privacy policy at <https://decodo.com>.
 - **Apify** is a service our server falls back to when it can't read an Instagram post itself. Apify receives the post's address from our server. See <https://apify.com/privacy-policy>.
 - **Google** runs the YouTube Data API, which our server uses to read a YouTube video's description. Google receives the video's ID from our server. See <https://policies.google.com/privacy>.
 - **Instagram, TikTok, YouTube and recipe websites** receive a request for the post or page you chose to save, made by our server.
