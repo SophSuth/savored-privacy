@@ -31,7 +31,7 @@ Depending on what you added, the server may:
 
 **These requests are made by our server, not by your phone.** Instagram, TikTok, YouTube, recipe websites and the services listed below see a request from our server — not your IP address, and nothing identifying you or your device.
 
-**When you share a recipe website from Safari,** the app reads the page already open in Safari, so neither your phone nor our server makes a new request for it. When you tap Extract, your phone sends our server the page's recipe information. If the page has none, it sends the text on the page instead, up to 12,000 characters. That can include anything shown on the page, such as your name if you're signed in to the site, so share only pages you're happy to have read this way. It's handled like anything else you send to make a recipe. Posts and videos shared from Safari still go through our server as described above, and only their link is sent.
+**When you share a recipe website from Safari,** the app reads the page already open in Safari, so our server doesn't need to fetch it to make the recipe. Our server may still request the page if nothing could be read from it, or to look for a cover picture. When you tap Extract, your phone sends our server the page's recipe information. If the page has none, it sends the text on the page instead, up to 12,000 characters. That can include anything shown on the page, such as your name if you're signed in to the site, so share only pages you're happy to have read this way. It's handled like anything else you send to make a recipe. Posts and videos shared from Safari still go through our server as described above, and only their link is sent.
 
 **One exception — the cover picture.** To give a saved recipe a cover picture, the app downloads the post's or page's image **directly from your phone**. That site sees an ordinary image request from your device, as it would in a web browser.
 
@@ -64,7 +64,7 @@ Reinstalling the app creates a new anonymous identifier.
 - **Decodo** provides the network connection our server uses to look up an Instagram post or YouTube video and to download YouTube video, so it can be read properly. Decodo sees the address of the post or video being looked up, sent from our server. See Decodo's privacy policy at <https://decodo.com>.
 - **Apify** is a service our server falls back to when it can't read an Instagram post itself. Apify receives the post's address from our server. See <https://apify.com/privacy-policy>.
 - **Google** runs the YouTube Data API, which our server uses to read a YouTube video's description. Google receives the video's ID from our server. See <https://policies.google.com/privacy>.
-- **Instagram, TikTok, YouTube and recipe websites** receive a request for the post or page you chose to save, made by our server, unless you shared a recipe website from Safari.
+- **Instagram, TikTok, YouTube and recipe websites** receive a request for the post or page you chose to save, made by our server when it needs to fetch it.
 
 ## Retention
 
