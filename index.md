@@ -61,9 +61,8 @@ Reinstalling the app creates a new anonymous identifier.
 - **Anthropic** makes Claude, which turns your input into a recipe. It receives the content described above from our server. Anthropic's terms say API data is not used to train its models by default. See <https://www.anthropic.com/legal/privacy>.
 - **Railway** hosts our server and stores the small amount of data described above. See <https://railway.com/legal/privacy>.
 - **Apple** provides App Attest, which lets our server confirm requests come from the genuine Savored app. Your phone talks to Apple for this as part of iOS. See <https://www.apple.com/legal/privacy/>.
-- **Decodo** provides the network connection our server uses to look up an Instagram post or YouTube video and to download YouTube video, so it can be read properly. Decodo sees the address of the post or video being looked up, sent from our server. See Decodo's privacy policy at <https://decodo.com>.
+- **Decodo** provides the network connection our server uses to look up an Instagram post or YouTube video, including a YouTube video's description, and to download YouTube video, so it can be read properly. Decodo sees the address of the post or video being looked up, sent from our server. See Decodo's privacy policy at <https://decodo.com>.
 - **Apify** is a service our server falls back to when it can't read an Instagram post itself. Apify receives the post's address from our server. See <https://apify.com/privacy-policy>.
-- **Google** runs the YouTube Data API, which our server uses to read a YouTube video's description. Google receives the video's ID from our server. See <https://policies.google.com/privacy>.
 - **Instagram, TikTok, YouTube and recipe websites** receive a request for the post or page you chose to save, made by our server when it needs to fetch it.
 
 ## Retention
